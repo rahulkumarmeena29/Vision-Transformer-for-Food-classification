@@ -398,5 +398,5 @@ def download_data(
     else:
         raise ValueError(
             f"Unknown dataset '{dataset}'. "
-            "Choose from: 'zip', 'cifar100', or 'food101'."
+            "Choose from: 'zip', 'cifar-10', or 'food-101'."
         )
