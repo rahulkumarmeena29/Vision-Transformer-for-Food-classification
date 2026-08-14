@@ -116,3 +116,63 @@ def create_food101_dataloaders(
     )
 
     return train_dataloader, test_dataloader, class_names
+
+
+def create_cifar10_dataloaders(
+    root_dir: str,
+    train_transform: transforms.Compose,
+    test_transform: transforms.Compose,
+    batch_size: int,
+    num_workers: int = 0
+):
+    """
+    Creates training and testing DataLoaders for CIFAR-10.
+
+    Args:
+        root_dir: Root directory where the CIFAR-10 dataset is/will be stored.
+        train_transform: Transformations for training images.
+        test_transform: Transformations for testing images.
+        batch_size: Number of samples per batch.
+        num_workers: Number of DataLoader workers.
+
+    Returns:
+        train_dataloader, test_dataloader, class_names
+    """
+
+    # Create CIFAR-10 training dataset
+    train_data = datasets.CIFAR10(
+        root=root_dir,
+        train=True,
+        transform=train_transform,
+        download=False
+    )
+
+    # Create CIFAR-10 testing dataset
+    test_data = datasets.CIFAR10(
+        root=root_dir,
+        train=False,
+        transform=test_transform,
+        download=False
+    )
+
+    # Get class names
+    class_names = train_data.classes
+
+    # Create DataLoaders
+    train_dataloader = DataLoader(
+        train_data,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=True
+    )
+
+    test_dataloader = DataLoader(
+        test_data,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=True
+    )
+
+    return train_dataloader, test_dataloader, class_names
