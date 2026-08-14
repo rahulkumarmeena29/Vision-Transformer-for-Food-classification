@@ -285,20 +285,20 @@ def download_data(
     # =========================================================
     # CIFAR-100
     # =========================================================
-    if dataset == "cifar100":
-        print("[INFO] Preparing CIFAR-100...")
+    if dataset == "cifar-10":
+        print("[INFO] Preparing CIFAR-10...")
         cifar_path = data_path / destination
-        train_data = datasets.CIFAR100(
+        train_data = datasets.CIFAR10(
             root=cifar_path,
             train=True,
             download=True
         )
-        test_data = datasets.CIFAR100(
+        test_data = datasets.CIFAR10(
             root=cifar_path,
             train=False,
             download=True
         )
-        print("[INFO] CIFAR-100 downloaded successfully.")
+        print("[INFO] CIFAR-10 downloaded successfully.")
         print(f"[INFO] Training samples: {len(train_data)}")
         print(f"[INFO] Testing samples: {len(test_data)}")
         print(f"[INFO] Number of classes: {len(train_data.classes)}")
